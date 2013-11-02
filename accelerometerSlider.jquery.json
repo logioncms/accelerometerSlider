@@ -17,12 +17,12 @@
     "licenses": [
         {
             "type": "MIT",
-            "url": "https://github.com/logioncms/accelerometerSlider-JQuery-Plugin/master/LICENSE"
+            "url": "https://github.com/logioncms/accelerometerSlider/master/LICENSE"
         }
     ],
-    "homepage": "http://www.medienservice-ladewig.de/accelerometerSlider",
-    "docs": "https://github.com/logioncms/accelerometerSlider-JQuery-Plugin",
-    "download": "https://github.com/logioncms/accelerometerSlider-JQuery-Plugin/releases/tag/0.9.2",
+    "homepage": "http://www.medienservice-ladewig.de/AccelerometerSlider",
+    "docs": "https://github.com/logioncms/accelerometerSlider",
+    "download": "https://github.com/logioncms/accelerometerSlider/releases/tag/0.9.2",
     "dependencies": {
         "jquery": ">=1.4"
     }
