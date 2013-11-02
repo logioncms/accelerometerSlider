@@ -1,4 +1,4 @@
-AccelerometerSlider Version 0.9.2
+AccelerometerSlider Version 0.9.3
 =================================
 
 A JQuery lightweight (3k zipped) Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices.
