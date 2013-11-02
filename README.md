@@ -1,0 +1,4 @@
+accelerometerSlider
+===================
+
+jQuery Plugin
