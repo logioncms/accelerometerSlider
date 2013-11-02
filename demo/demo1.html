@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<META name="author" content="Jörg Ladewig">
+	<META name="publisher" content="Medienservice Ladewig">
+	<META name="robots" content="index,follow">
+	<META name="generator" content="LOGION CMS /2.2/ - www.logion-cms.de">
+	<META name="description" content="Demo Page 1 for accelerometerSlider-JQuery-Plugin">
+
+	<title>Simple Demo Page 1 for accelerometerSlider-JQuery-Plugin / fixed width and height - non responsive</title>
+
+<style>
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+		img { width: 275px; height: auto}	
+		#slider3 { width:275px !important}		
+	}
+	
+	body {
+		font-family:Verdana, Arial, Helvetica, sans-serif;
+		font-size:0.8em;
+	}
+	h1{ font-size:1.5em; text-align:center; }
+	h3 { margin-top:5px; }
+	.slider {
+		
+		max-width:500px;
+		height:auto;
+		
+		margin: 0 auto;	
+		
+		border: 8px solid #FFFFFF;
+		border-radius:5px;
+		box-shadow: 2px 2px 4px #333333;	
+		
+	}
+	.slider img, .mycontent {
+		
+		float:left;
+		margin-right:10px;
+		border-radius: 8px;
+		-moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		-webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		overflow:auto;
+		line-height:1.5em;
+	
+	}
+	.slider img:not(:first-child) { 
+		display:none;
+	}
+	#slider2 .mycontent {
+		max-height:194px;
+	}
+	#slider3 {
+		width:350px;
+	}
+	#slider3 img, #slide3 .mycontent	{
+		float:none !important;
+	}
+	.code {
+		margin:50px;	
+	}
+</style>
+
+    
+</head>
+
+<body>
+
+	<h1>JQuery Plugin: accelerometerSlider : Demo #1</h1>
+
+	<div id="slider" class="slider">      	
+        <img border="0" alt="" src="images/small/image-1.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-2.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-3.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-4.jpg" width="350" height="194">
+        <div class="mycontent">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc
+        </div>
+        <div class="mycontent">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
+        </div>                                
+        <div class="slider-content">
+        	<h3>your title</h3>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam none
+        </div>
+	</div>
+    
+    <div class="code">
+	    <code>        
+			$('#slider').accelerometerSlider();      
+    	</code>
+    </div>
+
+	<div id="slider2" class="slider">      	
+        <img border="0" alt="" src="images/small/image-1.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-2.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-3.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-4.jpg" width="350" height="194">
+        <div class="mycontent">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc
+        </div>
+        <div class="mycontent">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
+        </div>                                
+        <div class="slider-content">
+        	<h3>your title</h3>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam none
+        </div>
+	</div>
+    
+    <div class="code">
+	    <code>        
+			$('#slider2').accelerometerSlider({ effect:'toss' });   
+    	</code>
+    </div>    
+
+	<div id="slider3" class="slider">      	
+        <img border="0" alt="" src="images/small/image-1.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-2.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-3.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-4.jpg" width="350" height="194">
+        <div class="slider-content">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+        </div>
+	</div>
+    
+    <div class="code">
+	    <code>        
+			$('#slider3').accelerometerSlider({ effect:'slideinout', effectDuration : 500 });   
+    	</code>
+    </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../jquery.accelerometerSlider.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$('#slider').accelerometerSlider();
+	
+	$('#slider2').accelerometerSlider({ effect:'toss', on: 'none'});
+	
+	$('#slider3').accelerometerSlider({ effect:'slideinout', effectDuration : 500, on: 'none' }); 
+	
+});
+
+</script>
+
+</body>
+</html>

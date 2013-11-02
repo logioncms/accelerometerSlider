@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<META name="author" content="Jörg Ladewig">
+	<META name="publisher" content="Medienservice Ladewig">
+	<META name="robots" content="index,follow">
+	<META name="generator" content="LOGION CMS /2.2/ - www.logion-cms.de">
+	<META name="description" content="Demo Page 2 for accelerometerSlider-JQuery-Plugin">
+
+	<title>Simple Demo Page 2 for accelerometerSlider-JQuery-Plugin - on device orientation</title>
+
+<style>
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+		img { width: 275px; height: auto}	
+	}
+	
+	body {
+		font-family:Verdana, Arial, Helvetica, sans-serif;
+		font-size:0.8em;
+	}
+	h1{ font-size:1.5em; text-align:center; }
+	h3 { margin-top:5px; }
+	.slider {
+		
+		max-width:500px;
+		height:auto;
+		
+		margin: 0 auto;	
+		
+		border: 8px solid #FFFFFF;
+		border-radius:5px;
+		box-shadow: 2px 2px 4px #333333;	
+		
+	}
+	.slider img, .mycontent {
+		
+		float:left;
+		margin-right:10px;
+		border-radius: 8px;
+		-moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		-webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		overflow:auto;
+		line-height:1.5em;
+	
+	}
+	.slider img:not(:first-child) { 
+		display:none;
+	}
+	.code {
+		margin:50px;	
+	}
+</style>
+
+    
+</head>
+
+<body>
+
+	<h1>JQuery Plugin: accelerometerSlider : Demo #1</h1>
+
+	<div id="slider" class="slider">      	
+        <img border="0" alt="" src="images/small/image-1.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-2.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-3.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-4.jpg" width="350" height="194">
+        <div class="slider-content">
+        	<h3>your title</h3>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+        </div>
+	</div>
+    
+    <div class="code">
+	    <code>        
+			$('#slider').accelerometerSlider( { effect:'toss' } );
+    	</code>
+    </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../jquery.accelerometerSlider.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$('#slider').accelerometerSlider( { effect:'toss' } );
+	
+});
+
+</script>
+
+</body>
+</html>

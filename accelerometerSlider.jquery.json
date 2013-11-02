@@ -1,0 +1,29 @@
+{
+    "name": "accelerometerSlider",
+    "title": "JQuery Accelerometer Content Slider",
+    "description": "JQuery plugin | Fully responsive Content Slider - A JQuery lightweight (3k zipped) Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices. Works in your existing responsive environment out of the box. You don't need any additional css. Detects single finger swipes and falls back to mouse 'drags' on the desktop. Supports hardware accelerated transitions : -moz-transition, -webkit-transition, -o-transition, transition",
+    "keywords": [
+        "accelerometer",
+        "mobile",
+        "responsive",
+        "slider",
+        "jquery"
+    ],
+    "version": "0.9.2",
+    "author": {
+        "name": "Jörg Ladewig",
+        "url": "http://www.medienservice-ladewig.de"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/logioncms/accelerometerSlider-JQuery-Plugin/master/LICENSE"
+        }
+    ],
+    "homepage": "http://www.medienservice-ladewig.de/accelerometerSlider",
+    "docs": "https://github.com/logioncms/accelerometerSlider-JQuery-Plugin",
+    "download": "https://github.com/logioncms/accelerometerSlider-JQuery-Plugin/releases/tag/0.9.2",
+    "dependencies": {
+        "jquery": ">=1.4"
+    }
+}
