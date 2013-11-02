@@ -3,6 +3,8 @@ AccelerometerSlider Version 0.9.3
 
 A JQuery lightweight (3k zipped) Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices.
 
+Just turn your Smartphone to the left or right side / or shake your smartphone if "on motion" is set.
+
 Best used on touch devices - but works on desktop computers too.
 
 Works in your existing responsive environment out of the box. You don't need any additional css.
