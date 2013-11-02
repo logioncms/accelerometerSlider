@@ -1,8 +1,8 @@
 /*
 jquery.accelerometerSlider plugin v0.9.3
 ---
-http://github.com/logioncms/accelerometerSlider-JQuery-Plugin
-http://www.medienservice-ladewig.de
+http://github.com/logioncms/accelerometerSlider
+http://www.medienservice-ladewig.de/accelerometerSlider
 ---
 Copyright (c) 2013 Joerg Ladewig
 
