@@ -21,7 +21,7 @@ Responsive Design ready (was a goal)
 
 Works in your existing responsive environment out of the box.
 
-Supports hardware accelerated transitions : -moz-transition, -webkit-transition, -o-transition, transition and falls back to Javascript CSS Animation if HW acceleration not supported
+Supports hardware accelerated transitions : -moz-transition, -webkit-transition, -o-transition, transition and falls back to Javascript CSS Animation if HW acceleration is not supported. So it works on older Browsers.
 
 Experimental feature:
 can be used as a lightweight content animator
