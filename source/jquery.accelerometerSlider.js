@@ -1,5 +1,5 @@
 /*
-jquery.accelerometerSlider plugin v0.9b
+jquery.accelerometerSlider plugin v0.9.3
 ---
 http://github.com/logioncms/accelerometerSlider-JQuery-Plugin
 http://www.medienservice-ladewig.de
@@ -466,7 +466,7 @@ clean up messy code
 			starts hardware accelerated transition on "elem" with css properties "props" and transform method "transform"
 		
 			@function
-				@description starts hardware accelerated transition on "elem" with css properties "props" and transform method "transform"
+			@description starts hardware accelerated transition on "elem" with css properties "props" and transform method "transform"
 			@param {dom element} The Element for transition
 			@param {object} css properties
 			@param {string} eg 'translate3d(0,0,0px)'
@@ -490,7 +490,7 @@ clean up messy code
 			prepare hardware accelerated transition on "elem" with css properties "props"
 		
 			@function
-				@description prepare hardware accelerated transition on "elem" with css properties "props"
+			@description prepare hardware accelerated transition on "elem" with css properties "props"
 			@param {dom element} The Element for transition
 			@param {object} css properties
 		*/
@@ -521,7 +521,7 @@ clean up messy code
 			prepare javascript/jquery animation on "elem" with css properties "props"
 		
 			@function
-				@description prepare javascript/jquery animation on "elem" with css properties "props"
+			@description prepare javascript/jquery animation on "elem" with css properties "props"
 			@param {dom element} The Element for animation
 			@param {object} css properties
 		*/	
@@ -537,7 +537,7 @@ clean up messy code
 			start javascript/jquery animation on "current" or "elem" with css properties "props"
 		
 			@function
-				@description start javascript/jquery animation on "current" or "elem" with css properties "props"
+			@description start javascript/jquery animation on "current" or "elem" with css properties "props"
 			@param {dom element} The Element for animation
 			@param {dom element} The other Element for animation
 			@param {object} css properties
@@ -603,7 +603,7 @@ clean up messy code
 			timeout function - get called after transition is done.
 		
 			@function
-				@description timeout function - get called after transition is done.
+			@description timeout function - get called after transition is done.
 			@param {dom element} The Element to finish and clean up
 			@param {dom element} The other Element to finish and clean up
 			@param {object} css properties
