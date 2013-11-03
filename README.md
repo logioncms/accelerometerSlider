@@ -121,4 +121,6 @@ Version History
 ---------------
 <b>0.9.4</b> added public methods (prev, next, add, size)
 
-<b>0.9.3</b> first release
+<b>0.9.3</b> manifest and readme update
+
+<b>0.9.2</b> first release
