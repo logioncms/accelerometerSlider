@@ -1,8 +1,8 @@
 /*
-jquery.accelerometerSlider plugin v0.9.3
+jquery.accelerometerSlider plugin v0.9.4
 ---
 http://github.com/logioncms/accelerometerSlider
-http://www.medienservice-ladewig.de/accelerometerSlider
+http://www.medienservice-ladewig.de/AccelerometerSlider
 ---
 Copyright (c) 2013 Joerg Ladewig
 
@@ -67,7 +67,7 @@ clean up messy code
         var plugin = this;
 		
 		// plugin data
-		var data;
+		plugin.data;
 
         // this will hold the merged default, and user-provided options
         // plugin's properties will be available through this object like:
@@ -85,7 +85,7 @@ clean up messy code
             // the plugin's final properties are the merged default and user-provided options (if any)
             plugin.settings = $.extend({}, defaults, options);
 
-			data  = {
+			plugin.data  = {
 				'inSwipe'		: false,
 				'pos'			: 0,
 				'lastAction'	: 0,
@@ -100,10 +100,10 @@ clean up messy code
 			};
 			
 			// hardware 3d transition supported?
-			data.prefix = has3DSupport();
+			plugin.data.prefix = has3DSupport();
 			
-			data.use3D = plugin.settings.acceleration && (data.prefix != 'no');
-			data.useComplex3D  = navigator.userAgent.toLowerCase().indexOf('android')<0; // fix for some android browsers
+			plugin.data.use3D = plugin.settings.acceleration && (plugin.data.prefix != 'no');
+			plugin.data.useComplex3D  = navigator.userAgent.toLowerCase().indexOf('android')<0; // fix for some android browsers
 
 			// get BackgroundColor of content container
 			var bgc = getBackgroundColor($element);
@@ -143,6 +143,18 @@ clean up messy code
 			
         }
 
+		/**
+			counts the current child elements
+		
+			@function
+			@description counts the current child elements
+		*/	
+		plugin.size = function ()
+		{
+			var children  = $element.children().not(plugin.settings.exclude);
+			return children.length;			
+		}
+
         // public methods
         // these methods can be called like:
         // plugin.methodName(arg1, arg2, ... argn) from inside the plugin or
@@ -160,47 +172,38 @@ clean up messy code
 		plugin.swipe = function (gamma, time)
 		{	
 			// already swiping?
-			if (data.inSwipe) return;
+			if (plugin.data.inSwipe) return;
 			
-			data.inSwipe = true;
+			plugin.data.inSwipe = true;
 			
-			var lastPos = data.pos;
+			var lastPos = plugin.data.pos;
 			
 			// calculate position of next container to display
-			data.pos += gamma > 0 ? 1 : -1;
+			plugin.data.pos += gamma > 0 ? 1 : -1;
 			
 			var direction = gamma > 0 ? -1 : 1;
 			
 			var children  = $element.children().not(plugin.settings.exclude).get();
 			var childsLen = children.length;
 			
-			data.pos = data.pos > childsLen-1 ? 0 : data.pos < 0 ? childsLen-1 : data.pos;
+			plugin.data.pos = plugin.data.pos > childsLen-1 ? 0 : plugin.data.pos < 0 ? childsLen-1 : plugin.data.pos;
 			
-			// on overflow reset to start or end position - set direction for swipe / -1=left or 1=right
-			if (data.pos > childsLen-1) {
-				data.pos=0;
-				direction = -1;
-			}
-			else if (data.pos<0) {
-				data.pos = childsLen;
-				direction = 1;
-			}
-	
+				
 			var props;
 			
 			// current dom element (displayed) and next dom element
 			var current 	= children[lastPos];
-			var next 		= children[data.pos];
+			var next 		= children[plugin.data.pos];
 			
 			var height		= $(current).outerHeight();
 			var width		= $(current).outerWidth();
 			
 			// we have implement a "dom element loaded" event to set width and height correctly
-			data.height		= $(next).outerHeight();
-			data.width		= $(next).outerWidth();
+			plugin.data.height		= $(next).outerHeight();
+			plugin.data.width		= $(next).outerWidth();
 			
-//			data.dimension[data.pos].height = $(next).height();
-//			data.dimension[data.pos].width  = $(next).width();
+//			plugin.data.dimension[plugin.data.pos].height = $(next).height();
+//			plugin.data.dimension[plugin.data.pos].width  = $(next).width();
 			
 			
 			// different swipe/tranistion/animation effects. need only one, but ...
@@ -221,7 +224,7 @@ clean up messy code
 							};											
 							
 							// run transition or animation
-							plugin.startSwipe({ current:current, next:next, props:props, accelerate:data.use3D });
+							plugin.startSwipe({ current:current, next:next, props:props, accelerate:plugin.data.use3D });
 				
 						break;
 	
@@ -245,7 +248,7 @@ clean up messy code
 							};
 							
 							// run transition or animation
-							plugin.startSwipe({ current:current, next:next, props:props, accelerate:data.use3D });
+							plugin.startSwipe({ current:current, next:next, props:props, accelerate:plugin.data.use3D });
 							
 						break;
 						
@@ -268,7 +271,7 @@ clean up messy code
 							};
 							
 							// run transition or animation
-							plugin.startSwipe({ current:current, next:next, props:props, accelerate:data.use3D });
+							plugin.startSwipe({ current:current, next:next, props:props, accelerate:plugin.data.use3D });
 										
 						break;
 						
@@ -298,16 +301,87 @@ clean up messy code
 							};
 							
 							// run transition or animation
-							plugin.startSwipe({ 'current':current, 'next':next, 'props':props, 'accelerate':data.use3D });	
+							plugin.startSwipe({ 'current':current, 'next':next, 'props':props, 'accelerate':plugin.data.use3D });	
 				
 						break;										
 	
 			}
 	
 			// store last gamma and last time swipe was performed
-			data.lastAction=gamma;
-			data.lastTime=time;
+			plugin.data.lastAction = gamma;	
+			plugin.data.lastTime   = time ? time : Date.now()
+//			plugin.data.lastTime=time;
 			
+		}
+
+		/**
+			add a new element at [pos] or if [pos] not given - at actual position
+		
+			@function
+			@description add a new element at [pos] or if [pos] not given - at actual position
+			@param {dom element} the element to insert
+			@param {integer} position
+		*/	
+		plugin.add = function (elem, pos)
+		{
+			var newPos = pos ? pos : plugin.data.pos;
+			
+			var bgc = getBackgroundColor($element);
+			
+			$(elem).css({
+						'cursor' : 'move',
+						'background-color' : bgc,
+						'display' : 'none'
+						
+					}).addClass('last-inserted');
+					
+			$element.find(':nth-child(' + (newPos+1) + ')').after(elem).trigger('create');
+			
+			var $elem = $element.find(".last-inserted").removeClass('last-inserted');
+			
+			bindEvents($elem);
+			
+			if (typeof elem != 'img') { 
+			
+				if (!pos) plugin.swipe(1);
+				
+				return;
+			}
+			
+			// its an image - so we have to wait until its fully loaded
+			if ($elem.prop('complete')) {
+				
+				if (!pos) plugin.swipe(1);
+				
+			}
+			else
+				$elem.load(function() {  
+		
+						if (!pos) plugin.swipe(1);
+							
+			   });
+		}
+
+		/**
+			swipe to previous position // external call
+		
+			@function
+			@description swipe to previous position // external call
+		*/		
+		plugin.prev = function ()
+		{
+			plugin.swipe(-1);
+		}
+
+		/**
+			swipe to next position // external call
+		
+			@function
+			@description swipe to next position // external call
+		*/		
+		plugin.next = function ()
+		{
+			plugin.swipe(1);
 		}
 
 		/**
@@ -409,17 +483,17 @@ clean up messy code
 			};
 			
 			// run transition or animation
-			var accelerated = plugin.startSwipe( { 'current': elem, 'props': props, 'accelerate' : data.use3D, 'duration': speed } );
+			var accelerated = plugin.startSwipe( { 'current': elem, 'props': props, 'accelerate' : plugin.data.use3D, 'duration': speed } );
 			
 			if (accelerated)
 				$(elem).bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', 
 				/*setTimeout(*/function() {
 					
 					var transition = {};
-					transition[data.prefix+'transition-property'] = 'none';
-					transition[data.prefix+'transition-duration'] = '';
-					transition[data.prefix+'transition-timing-function'] = '';
-					transition[data.prefix+'transform'] = '';
+					transition[plugin.data.prefix+'transition-property'] = 'none';
+					transition[plugin.data.prefix+'transition-duration'] = '';
+					transition[plugin.data.prefix+'transition-timing-function'] = '';
+					transition[plugin.data.prefix+'transform'] = '';
 					
 					$(elem).css(transition)
 						   .css({
@@ -432,7 +506,7 @@ clean up messy code
 					
 					$(elem).unbind ('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd');
 					
-					//data.inSwipe=false;
+					plugin.data.inSwipe=false;
 				
 					if (plugin.settings.callback!=null && typeof(plugin.settings.callback) === "function")
 						plugin.settings.callback.call();
@@ -450,7 +524,7 @@ clean up messy code
 		plugin.destroy = function ()
 		{			
 			// unbind global event listener
-			if (data.eventHandler) window.removeEventListener('devicemotion deviceorientation', data.eventHandler, true);
+			if (plugin.data.eventHandler) window.removeEventListener('devicemotion deviceorientation', plugin.data.eventHandler, true);
 			
 			// unbind events on childrens
 			$elements.children().unbind('mousedown touchstart touchmove mouseup touchend');
@@ -476,7 +550,7 @@ clean up messy code
 			var target 		= $(elem);
 			
 			var transition  = {};
-				transition[data.prefix+'transform'] =  transform;
+				transition[plugin.data.prefix+'transform'] =  transform;
 					
 			//set transition properties
 			if (props!=null) target.css(props);		
@@ -499,9 +573,9 @@ clean up messy code
 			duration = duration >-1 ? duration : plugin.settings.effectDuration;
 			
 			var transition = {};
-				transition[data.prefix+'transition-property'] = 'all';
-				transition[data.prefix+'transition-duration'] = duration + 'ms';
-				transition[data.prefix+'transition-timing-function'] = 'ease-in-out';
+				transition[plugin.data.prefix+'transition-property'] = 'all';
+				transition[plugin.data.prefix+'transition-duration'] = duration + 'ms';
+				transition[plugin.data.prefix+'transition-timing-function'] = 'ease-in-out';
 			
 			var target = $(elem);
 			
@@ -561,8 +635,8 @@ clean up messy code
 								$(current).css('display' , 'none' );
 						
 								plugin.responsive( target, 
-								data.width, 
-								data.height, 
+								plugin.data.width, 
+								plugin.data.height, 
 								plugin.settings.responsiveSpeed);	
 								
 							}
@@ -594,7 +668,7 @@ clean up messy code
 								
 							}
 		
-							data.inSwipe=false;
+							plugin.data.inSwipe=false;
 	
 					});
 		}
@@ -626,10 +700,10 @@ clean up messy code
 		
 				var transition = {};
 				
-					transition[data.prefix+'transition-property'] = 'none';
-					transition[data.prefix+'transition-duration'] = '';
-					transition[data.prefix+'transition-timing-function'] = '';
-					transition[data.prefix+'transform'] = '';
+					transition[plugin.data.prefix+'transition-property'] = 'none';
+					transition[plugin.data.prefix+'transition-duration'] = '';
+					transition[plugin.data.prefix+'transition-timing-function'] = '';
+					transition[plugin.data.prefix+'transform'] = '';
 	
 					
 					if (current!=null)
@@ -639,8 +713,8 @@ clean up messy code
 					
 					if (plugin.settings.responsive) {
 						plugin.responsive( next, 
-											data.width, 
-											data.height, 
+											plugin.data.width, 
+											plugin.data.height, 
 											plugin.settings.responsiveSpeed );
 											
 					}
@@ -650,9 +724,10 @@ clean up messy code
 					
 						if (plugin.settings.callback!=null && typeof(plugin.settings.callback) === "function")
 							plugin.settings.callback.call();
+							
+						plugin.data.inSwipe=false;
 					}
 					
-					data.inSwipe=false;
 				}
 				/*,plugin.settings.effectDuration*/);
 			}
@@ -664,23 +739,25 @@ clean up messy code
 			@function
 			@description start plugin and bind event handler
 		*/		
-		var bindEvents = function ()
+		var bindEvents = function (elem)
 		{
-			data.lastTime = Date.now();
+			plugin.data.lastTime = Date.now();
 			
-			$element.children().each(function() {
-	
+			var children = elem ? elem : $element.children();
+			
+			children.each(function() {
+				
 					$(this)
 					// bind events for mousedown and touchstars. mouseddown only for desktop support. is not needed for mobile devices
 					.bind('mousedown touchstart', function(e) {
 				
 						if (e.originalEvent.touches) {
-							data.mouseDown = e.originalEvent.touches[0].pageX;
-							data.scrollY = e.originalEvent.touches[0].pageY;
+							plugin.data.mouseDown = e.originalEvent.touches[0].pageX;
+							plugin.data.scrollY = e.originalEvent.touches[0].pageY;
 						}
 						else {
-							data.mouseDown = e.pageX;
-							data.scrollY = e.pageY;
+							plugin.data.mouseDown = e.pageX;
+							plugin.data.scrollY = e.pageY;
 							
 							e.stopPropagation();
 							
@@ -691,10 +768,10 @@ clean up messy code
 					// bind event for touchmove. enables touch functionality on certain devices. not needed, but nice to have this too as a fallback
 					.bind('touchmove', function(e) {
 						
-						data.mouseUp = e.originalEvent.touches[0].pageX;
+						plugin.data.mouseUp = e.originalEvent.touches[0].pageX;
 						var scrollY = e.originalEvent.touches[0].pageY;
 	
-						if (Math.abs(data.mouseUp - data.mouseDown) > Math.abs(scrollY - data.scrollY)) {
+						if (Math.abs(plugin.data.mouseUp - plugin.data.mouseDown) > Math.abs(scrollY - plugin.data.scrollY)) {
 							e.stopPropagation();
 							return false;					
 						}
@@ -703,9 +780,9 @@ clean up messy code
 					// bind events for mouseup and touchend. mousedup only for desktop support. is not needed for mobile devices
 					.bind('mouseup touchend', function(e) {
 											
-						if (!e.originalEvent.touches) data.mouseUp = e.pageX;
+						if (!e.originalEvent.touches) plugin.data.mouseUp = e.pageX;
 										
-						var motion = data.mouseUp-data.mouseDown;
+						var motion = plugin.data.mouseUp-plugin.data.mouseDown;
 						
 						var containerWidth = $element.outerWidth();
 						var pixelWidth	   = plugin.settings.movePercent*containerWidth/100;
@@ -728,23 +805,23 @@ clean up messy code
 			//	bind deviceorientation event listener	
 			//
 			
-			if (plugin.settings.on == 'orientation') {
+			if (plugin.settings.on == 'orientation' && !elem) {
 			
-				window.addEventListener('deviceorientation', data.eventHandler = function(event) {
+				window.addEventListener('deviceorientation', plugin.data.eventHandler = function(event) {
 					
 						var gamma = event.gamma;
 						
 						var time = Date.now();
 						
 						// certain time elapsed since last swipe?
-						if (time-data.lastTime<plugin.settings.minTime) return false;
+						if (time-plugin.data.lastTime<plugin.settings.minTime) return false;
 						
 						// gamma > options.resetGamma // device is in startposition?
-						if (gamma>=-plugin.settings.resetGamma && gamma <= plugin.settings.resetGamma) data.lastAction=0;
+						if (gamma>=-plugin.settings.resetGamma && gamma <= plugin.settings.resetGamma) plugin.data.lastAction=0;
 						
 						// gamma > options.resetGamma and gamma > or < as options.minGamma // user has done something with his device
-						if (data.lastAction<=-plugin.settings.minGamma && gamma <=-plugin.settings.minGamma) return;
-						if (data.lastAction>=plugin.settings.minGamma && gamma >=plugin.settings.minGamma) return;
+						if (plugin.data.lastAction<=-plugin.settings.minGamma && gamma <=-plugin.settings.minGamma) return;
+						if (plugin.data.lastAction>=plugin.settings.minGamma && gamma >=plugin.settings.minGamma) return;
 						
 						if (gamma>=plugin.settings.minGamma || gamma<=-plugin.settings.minGamma) {
 							
@@ -757,7 +834,7 @@ clean up messy code
 				}, true);
 			}
 			else 
-			if (plugin.settings.on == 'motion') {
+			if (plugin.settings.on == 'motion' && !elem) {
 				window.ondevicemotion = function(coords) {
 					
 					var accX = coords.acceleration.x;
@@ -776,7 +853,7 @@ clean up messy code
 				}			
 			}
 			
-			return data;
+			return plugin.data;
 		}
 
 		/**
