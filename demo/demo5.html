@@ -11,7 +11,7 @@
 	<META name="generator" content="LOGION CMS /2.2/ - www.logion-cms.de">
 	<META name="description" content="Demo Page 5 for accelerometerSlider-JQuery-Plugin">
 
-	<title>Simple Demo Page 5 for accelerometerSlider-JQuery-Plugin / external plugin calls and adding content on the fly</title>
+	<title>Simple Demo Page 5 for accelerometerSlider-JQuery-Plugin / public plugin methods next, prev, add and remove</title>
 
 <style>
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
@@ -46,10 +46,7 @@
 		border-radius: 8px;
 		-moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
 		-webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
-		box-shadow: 1px 2px 3px rgba(0,0,0,.5);
-		overflow:auto;
-		line-height:1.5em;
-		
+		box-shadow: 1px 2px 3px rgba(0,0,0,.5);		
 		margin-bottom:10px;
 	
 	}
@@ -67,8 +64,10 @@
 
 <body>
 
-	<h1>jQuery Plugin: accelerometerSlider : Demo #5 - external plugin calls and adding content on the fly</h1>
-    <div class="center">the plugin leaves the dom tree untouched - until you insert something</div><br><br>
+	<a href="/AccelerometerSlider">Plugin Homepage</a> | <a href="demo1.html">Demo #1</a> | <a href="demo2.html">Demo #2</a> | <a href="demo3.html">Demo #3</a> | <a href="demo4.html">Demo #4</a> | <a href="demo5.html">Demo #5</a>
+
+	<h1>jQuery Plugin: accelerometerSlider : Demo #5 - public plugin methods - prev, next, add and remove</h1>
+    <div class="center">the plugin leaves the dom tree untouched - until you add or delete something</div><br><br>
 
 	<div id="slider" class="slider">      	
         <img border="0" alt="" src="images/small/image-1.jpg" width="350" height="194">
@@ -76,7 +75,7 @@
         <img border="0" alt="" src="images/small/image-3.jpg" width="350" height="194">
         <img border="0" alt="" src="images/small/image-4.jpg" width="350" height="194">
         <div class="slider-content">
-        	<a href="javascript:prev()">prev</a> | <a href="javascript:next()">next</a> | <a href="javascript:addImage()">add image</a> | <a href="javascript:addDiv()">add div</a>
+        	<a href="javascript:prev()">prev</a> | <a href="javascript:next()">next</a> | <a href="javascript:addImage()">add image</a> | <a href="javascript:addDiv()">add div</a> | <a href="javascript:remove()">remove</a>
         </div>
 	</div>
 
@@ -97,7 +96,9 @@
             &nbsp;&nbsp;&nbsp;&nbsp;$('#slider').data('accelerometerSlider').add(img);<br>
             }<br><br>
 
-			$('#slider').data('accelerometerSlider').add([elem], [position]);<br><br>
+			var size = $('#slider').data('accelerometerSlider').add(dom element, [position]);<br><br>
+            
+            var size = $('#slider').data('accelerometerSlider').remove();<br><br>
 
             $('#slider').data('accelerometerSlider').prev();<br><br>
             
@@ -107,8 +108,9 @@
     	</code>
     </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="jquery.accelerometerSlider.min.js?v=4"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.accelerometerSlider.min.js?v=5"></script>
+
 <script type="text/javascript">
 
 	function addDiv()
@@ -125,6 +127,11 @@
 		img.src = 'http://placehold.it/350x194';
 		
 		$('#slider').data('accelerometerSlider').add(img);
+	}
+
+	function remove()
+	{
+		$('#slider').data('accelerometerSlider').remove();
 	}
 
 	function prev()
@@ -144,3 +151,6 @@ $(document).ready(function() {
 });
 
 </script>
+
+</body>
+</html>
