@@ -1,4 +1,4 @@
-AccelerometerSlider Version 0.9.4
+AccelerometerSlider Version 0.9.5
 =================================
 
 A JQuery lightweight (3k zipped) Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices.
@@ -106,7 +106,9 @@ $('#slider').data('accelerometerSlider').next();
 
 $('#slider').data('accelerometerSlider').prev();
 
-$('#slider').data('accelerometerSlider').add(dom element);
+var size = $('#slider').data('accelerometerSlider').add(dom element);
+
+var size = $('#slider').data('accelerometerSlider').remove();
 
 var size = $('#slider').data('accelerometerSlider').size();
 
@@ -119,6 +121,8 @@ $('#slider').data('accelerometerSlider').responsive ( dom element, width, height
 ---------------
 Version History
 ---------------
+<b>0.9.5</b> added public method (remove), tweaks, minor bugfixes
+
 <b>0.9.4</b> added public methods (prev, next, add, size)
 
 <b>0.9.3</b> minor bugfixes
