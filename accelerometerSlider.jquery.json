@@ -1,7 +1,7 @@
 {
     "name": "accelerometerSlider",
     "title": "JQuery Accelerometer Content Slider",
-    "description": "JQuery plugin | Fully responsive Content Slider - A JQuery lightweight (3k zipped) Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices. Works in your existing responsive environment out of the box. You don't need any additional css. Detects single finger swipes and falls back to mouse 'drags' on the desktop. Supports hardware accelerated transitions : -moz-transition, -webkit-transition, -o-transition, transition",
+    "description": "A JQuery lightweight (3k zipped) fully responsive Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices.",
     "keywords": [
         "accelerometer",
         "mobile",
