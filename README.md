@@ -1,4 +1,4 @@
-AccelerometerSlider Version 0.9.3
+AccelerometerSlider Version 0.9.4
 =================================
 
 A JQuery lightweight (3k zipped) Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices.
@@ -58,7 +58,8 @@ devicemotion and deviceorientation will only work on accelerometer equipped devi
 <a href="http://www.medienservice-ladewig.de/demo/demo1.htm">demo #1</a> | 
 <a href="http://www.medienservice-ladewig.de/demo/demo2.htm">demo #2</a> | 
 <a href="http://www.medienservice-ladewig.de/demo/demo3.htm">responsive demo #3</a> | 
-<a href="http://www.medienservice-ladewig.de/demo/demo4.htm">responsive demo #4</a>
+<a href="http://www.medienservice-ladewig.de/demo/demo4.htm">responsive demo #4</a> |
+<a href="http://www.medienservice-ladewig.de/demo/demo5.htm">instance methods #5</a>
 
 <a href="http://www.medienservice-ladewig.de/AccelerometerSlider">Plugin Homepage</a>
 
@@ -98,3 +99,19 @@ acceleration : true // hardware acceleration (css transition) will be used - if 
 
 exclude : '.slider-content' // slider content container to exclude from slide
 
+----------------
+Instance Methods
+----------------
+$('#slider').data('accelerometerSlider').next();
+
+$('#slider').data('accelerometerSlider').prev();
+
+$('#slider').data('accelerometerSlider').add(dom element);
+
+var size = $('#slider').data('accelerometerSlider').size();
+
+$('#slider').data('accelerometerSlider').destroy();
+
+$('#slider').data('accelerometerSlider').startSwipe ( { options } )
+
+$('#slider').data('accelerometerSlider').responsive ( dom element, width, height, duration )
