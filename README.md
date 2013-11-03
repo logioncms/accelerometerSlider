@@ -115,3 +115,10 @@ $('#slider').data('accelerometerSlider').destroy();
 $('#slider').data('accelerometerSlider').startSwipe ( { options } )
 
 $('#slider').data('accelerometerSlider').responsive ( dom element, width, height, duration )
+
+---------------
+Version History
+---------------
+<b>0.9.4</b> added public methods (prev, next, add, size)
+
+<b>0.9.3</b> first release
