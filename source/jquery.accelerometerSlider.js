@@ -143,6 +143,12 @@ clean up messy code
 			
         }
 
+        // public methods
+        // these methods can be called like:
+        // plugin.methodName(arg1, arg2, ... argn) from inside the plugin or
+        // element.data('accelerometerSlider').publicMethod(arg1, arg2, ... argn) from outside the plugin, where "element"
+        // is the element the plugin is attached to;
+
 		/**
 			counts the current child elements
 		
@@ -154,12 +160,6 @@ clean up messy code
 			var children  = $element.children().not(plugin.settings.exclude);
 			return children.length;			
 		}
-
-        // public methods
-        // these methods can be called like:
-        // plugin.methodName(arg1, arg2, ... argn) from inside the plugin or
-        // element.data('pluginName').publicMethod(arg1, arg2, ... argn) from outside the plugin, where "element"
-        // is the element the plugin is attached to;
 
 		/**
 			swipe to next image
@@ -206,12 +206,12 @@ clean up messy code
 //			plugin.data.dimension[plugin.data.pos].width  = $(next).width();
 			
 			
-			// different swipe/tranistion/animation effects. need only one, but ...
+			// different swipe/transition/animation effects. need only one, but ...
 			switch (plugin.settings.effect) {
 				
 				case 'fade' : 
 				
-							// set properties for tranistion or animation
+							// set properties for transition or animation
 							props = {
 								
 								current : {
@@ -230,7 +230,7 @@ clean up messy code
 	
 				case 'slidein' : 
 				
-							// calculate and set properties for tranistion or animation
+							// calculate and set properties for transition or animation
 							var left = width*direction;
 							
 							props = {
@@ -254,7 +254,7 @@ clean up messy code
 						
 				case 'slideinout' : 
 				
-							// set properties for tranistion or animation
+							// set properties for transition or animation
 							
 							props = {
 								
@@ -277,7 +277,7 @@ clean up messy code
 						
 				case 'toss' : 	
 				
-							// calculate set properties for tranistion or animation
+							// calculate set properties for transition or animation
 				
 							var top  = $element.offset().top-$(window).scrollTop();
 							var left = $element.offset().left-$(window).scrollLeft();
