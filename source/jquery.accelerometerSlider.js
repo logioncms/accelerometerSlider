@@ -1,5 +1,5 @@
 /*
-jquery.accelerometerSlider plugin v0.9.4
+jquery.accelerometerSlider plugin v0.9.5
 ---
 http://github.com/logioncms/accelerometerSlider
 http://www.medienservice-ladewig.de/AccelerometerSlider
@@ -120,19 +120,15 @@ clean up messy code
 			
 			$element.children().not(plugin.settings.exclude).each(function() {
 				
-				var elem 	= $(this);
+				var $elem 	= $(this);
 				
-				elem.css({
+				$elem.css({
 							'cursor' : 'move',
 							'background-color' : bgc
 						});
 				
-				if (i>0) {
-					
-					elem.css({
-								'display' 	: 'none'
-							});
-				}								
+				if (i>0)
+					$elem.hide();
 												
 				i++;
 				
@@ -185,6 +181,8 @@ clean up messy code
 			
 			var children  = $element.children().not(plugin.settings.exclude).get();
 			var childsLen = children.length;
+			
+			if (childsLen < 2) return;
 			
 			plugin.data.pos = plugin.data.pos > childsLen-1 ? 0 : plugin.data.pos < 0 ? childsLen-1 : plugin.data.pos;
 			
@@ -316,6 +314,7 @@ clean up messy code
 
 		/**
 			add a new element at [pos] or if [pos] not given - at actual position
+			returns size of content elements
 		
 			@function
 			@description add a new element at [pos] or if [pos] not given - at actual position
@@ -335,32 +334,80 @@ clean up messy code
 						
 					}).addClass('last-inserted');
 					
-			$element.find(':nth-child(' + (newPos+1) + ')').after(elem).trigger('create');
+			var children = $element.children(':not('+plugin.settings.exclude+')').get();
+			
+			if(children.length>0)
+				$(children[newPos]).after(elem);
+				
+			else {
+				$element.prepend(elem);
+				$(elem).show();
+			}
+			
 			
 			var $elem = $element.find(".last-inserted").removeClass('last-inserted');
 			
 			bindEvents($elem);
 			
-			if (typeof elem != 'img') { 
+			if ($elem.prop('tagName') != 'IMG') { 
 			
-				if (!pos) plugin.swipe(1);
+				if (!pos && children.length>0)
+						plugin.swipe(1);
 				
-				return;
+				return children.length+1;
 			}
 			
 			// its an image - so we have to wait until its fully loaded
-			if ($elem.prop('complete')) {
+			if ($elem.prop('complete') && elem.naturalWidth != 0) {
 				
-				if (!pos) plugin.swipe(1);
+				if (!pos && children.length>0)
+					 plugin.swipe(1);
 				
 			}
 			else
 				$elem.load(function() {  
 		
-						if (!pos) plugin.swipe(1);
+						if (!pos && children.length>0)
+							plugin.swipe(1);
 							
 			   });
+			   
+			return children.length+1;
 		}
+
+		/**
+			remove element at actual position // buggy on last pos
+			returns size of content elements
+		
+			@function
+			@description remove element at actual position
+		*/	
+		plugin.remove = function ()
+		{
+			var children  = $element.children().not(plugin.settings.exclude).get();
+			var childsLen = children.length;
+			
+			if (childsLen<1) return 0;
+			
+			var current 	= children[plugin.data.pos];
+			
+			plugin.data.pos--;
+			if (plugin.data.pos < 0)
+				plugin.data.pos = childsLen-1;
+			
+			var next 		= children[plugin.data.pos];
+
+			$(current).css( {position : 'absolute', top:0, left:0 })
+					  .animate({ opacity:0 }, plugin.settings.effectDuration, function() { $(current).remove(); });
+					  
+			$(next).css( { 'position' : 'static', 'display' : 'block' });
+			
+			if (plugin.data.pos > 0 && plugin.data.pos == childsLen-1)
+				plugin.data.pos--;			
+			
+			return childsLen-1;
+		}
+
 
 		/**
 			swipe to previous position // external call
@@ -582,10 +629,14 @@ clean up messy code
 			if (props!=null) {
 				target.css(props);
 			}
-	
-			var cStyle = window.getComputedStyle(elem, null);
-			for(var prop in props){
+			
+			try {
+				
+				var cStyle = window.getComputedStyle(elem, null);
+				for(var prop in props)
 					target.css(prop, cStyle.getPropertyValue(prop));
+					
+			} catch (e) {
 			}
 	
 			 target.css( transition );		
