@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<META name="author" content="Jörg Ladewig">
+	<META name="publisher" content="Medienservice Ladewig">
+	<META name="robots" content="index,follow">
+	<META name="generator" content="LOGION CMS /2.2/ - www.logion-cms.de">
+	<META name="description" content="Demo Page 5 for accelerometerSlider-JQuery-Plugin">
+
+	<title>Simple Demo Page 5 for accelerometerSlider-JQuery-Plugin / external plugin calls and adding content on the fly</title>
+
+<style>
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+		img { width: 275px; height: auto}	
+		#slider { width:275px !important}		
+	}
+	
+	body {
+		font-family:Verdana, Arial, Helvetica, sans-serif;
+		font-size:0.8em;
+		background-color:#FFF;
+		color:#000;
+	}
+	h1{ font-size:1.5em; text-align:center; }
+	h3 { margin-top:5px; }
+	.slider {
+		
+		width:350px;
+		height:auto;
+		
+		margin: 0 auto;	
+		
+		border: 8px solid #FFFFFF;
+		border-radius:5px;
+		box-shadow: 2px 2px 4px #333333;	
+		
+	}
+	.slider img {
+		
+		margin-right:10px;
+		border-radius: 8px;
+		-moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		-webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+		overflow:auto;
+		line-height:1.5em;
+		
+		margin-bottom:10px;
+	
+	}
+	.slider img:not(:first-child) { 
+		display:none;
+	}
+	.code {
+		margin:50px;	
+	}
+	.center { text-align:center }
+</style>
+
+    
+</head>
+
+<body>
+
+	<h1>jQuery Plugin: accelerometerSlider : Demo #5 - external plugin calls and adding content on the fly</h1>
+    <div class="center">the plugin leaves the dom tree untouched - until you insert something</div><br><br>
+
+	<div id="slider" class="slider">      	
+        <img border="0" alt="" src="images/small/image-1.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-2.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-3.jpg" width="350" height="194">
+        <img border="0" alt="" src="images/small/image-4.jpg" width="350" height="194">
+        <div class="slider-content">
+        	<a href="javascript:prev()">prev</a> | <a href="javascript:next()">next</a> | <a href="javascript:addImage()">add image</a> | <a href="javascript:addDiv()">add div</a>
+        </div>
+	</div>
+
+    <div class="code">
+	    <code>        
+			$('#slider').accelerometerSlider( { effect: 'slidein', effectDuration: 350, responsive : true });<br><br>
+            function addDiv()<br>
+            {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;var div = document.createElement('div');<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;$('#slider').data('accelerometerSlider').add(div);<br>
+            }<br><br>
+        
+            function addImage()<br>
+            {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;var img = document.createElement('img');<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;img.src = 'http://placehold.it/350x194';<br><br>
+                
+            &nbsp;&nbsp;&nbsp;&nbsp;$('#slider').data('accelerometerSlider').add(img);<br>
+            }<br><br>
+
+			$('#slider').data('accelerometerSlider').add([elem], [position]);<br><br>
+
+            $('#slider').data('accelerometerSlider').prev();<br><br>
+            
+            $('#slider').data('accelerometerSlider').next();<br><br>
+            
+            var size = $('#slider').data('accelerometerSlider').size();
+    	</code>
+    </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.accelerometerSlider.min.js?v=4"></script>
+<script type="text/javascript">
+
+	function addDiv()
+	{
+		var div = document.createElement('div');
+		div.innerHTML = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.";
+		
+		$('#slider').data('accelerometerSlider').add(div);
+	}
+
+	function addImage()
+	{
+		var img = document.createElement('img');
+		img.src = 'http://placehold.it/350x194';
+		
+		$('#slider').data('accelerometerSlider').add(img);
+	}
+
+	function prev()
+	{
+		$('#slider').data('accelerometerSlider').prev();
+	}
+	
+	function next()
+	{
+		$('#slider').data('accelerometerSlider').next();
+	}
+
+$(document).ready(function() {
+	
+	$('#slider').accelerometerSlider( { effect: 'slidein', effectDuration: 350, responsive : true });
+	
+});
+
+</script>
