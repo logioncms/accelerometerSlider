@@ -986,9 +986,9 @@ clean up messy code
 			
 			if (color == 'rgba(0, 0, 0, 0)' || color=='transparent') color='';
 			
-			// if not: are you at the body element?
+			// if not: are you at the body element or color found?
 			if (color.length>0 || elem.is("body")) {
-				// return known 'false' value
+				// return color value
 				return color;
 			} else {
 				// call getBackgroundColor with parent item
