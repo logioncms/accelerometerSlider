@@ -7,7 +7,7 @@ Just turn your Smartphone to the left or right side / or shake your smartphone i
 
 Best used on touch devices - but works on desktop computers too.
 
-Works in your existing responsive environment out of the box. You don't need any additional css.
+Works in your existing responsive environment out of the box. You don't need any additional css - except of your own.
 
 <a href="http://www.medienservice-ladewig.de/AccelerometerSlider">Plugin Homepage</a>
 
