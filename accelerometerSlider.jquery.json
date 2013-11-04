@@ -1,7 +1,7 @@
 {
     "name": "accelerometerSlider",
     "title": "JQuery Accelerometer Content Slider",
-    "description": "Lightweight (3k zipped) fully responsive Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices.",
+    "description": "Lightweight (3k zipped) fully responsive Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices. Supports HW accelerated Transitions.",
     "keywords": [
         "accelerometer",
         "mobile",
