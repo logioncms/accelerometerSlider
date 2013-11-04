@@ -134,7 +134,7 @@ clean up messy code
 				
 			});	
 			
-			// bin events on element and his children
+			// bind events on element and his children
 			bindEvents();
 			
         }
