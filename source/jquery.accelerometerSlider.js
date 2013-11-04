@@ -1,5 +1,5 @@
 /*
-jquery.accelerometerSlider plugin v0.9.5
+jquery.accelerometerSlider plugin v0.9.6
 ---
 http://github.com/logioncms/accelerometerSlider
 http://www.medienservice-ladewig.de/AccelerometerSlider
@@ -153,9 +153,54 @@ clean up messy code
 		*/	
 		plugin.size = function ()
 		{
-			var children  = $element.children().not(plugin.settings.exclude);
-			return children.length;			
+			return $element.children().not(plugin.settings.exclude).length
 		}
+
+		/**
+			swipe to previous position // external call
+		
+			@function
+			@description swipe to previous position // external call
+		*/		
+		plugin.prev = function ()
+		{
+			plugin.swipe(-1);
+		}
+
+		/**
+			swipe to next position // external call
+		
+			@function
+			@description swipe to next position // external call
+		*/		
+		plugin.next = function ()
+		{
+			plugin.swipe(1);
+		}
+
+		/**
+			get current position // external call
+		
+			@function
+			@description returns current position // external call
+		*/		
+		plugin.position = function ()
+		{
+			return plugin.data.pos;
+		}
+		
+		/**
+			get current displayed element // external call
+		
+			@function
+			@description returns current dom element // external call
+		*/		
+		plugin.current = function ()
+		{
+			var children  = $element.children().not(plugin.settings.exclude).get();
+			
+			return children[plugin.data.pos];
+		}		
 
 		/**
 			swipe to next image
@@ -169,6 +214,11 @@ clean up messy code
 		{	
 			// already swiping?
 			if (plugin.data.inSwipe) return;
+
+			var children  = $element.children().not(plugin.settings.exclude).get();
+			var childsLen = children.length;
+			
+			if (childsLen < 2) return;
 			
 			plugin.data.inSwipe = true;
 			
@@ -178,11 +228,6 @@ clean up messy code
 			plugin.data.pos += gamma > 0 ? 1 : -1;
 			
 			var direction = gamma > 0 ? -1 : 1;
-			
-			var children  = $element.children().not(plugin.settings.exclude).get();
-			var childsLen = children.length;
-			
-			if (childsLen < 2) return;
 			
 			plugin.data.pos = plugin.data.pos > childsLen-1 ? 0 : plugin.data.pos < 0 ? childsLen-1 : plugin.data.pos;
 			
@@ -310,125 +355,6 @@ clean up messy code
 			plugin.data.lastTime   = time ? time : Date.now()
 //			plugin.data.lastTime=time;
 			
-		}
-
-		/**
-			add a new element at [pos] or if [pos] not given - at actual position
-			returns size of content elements
-		
-			@function
-			@description add a new element at [pos] or if [pos] not given - at actual position
-			@param {dom element} the element to insert
-			@param {integer} position
-		*/	
-		plugin.add = function (elem, pos)
-		{
-			var newPos = pos ? pos : plugin.data.pos;
-			
-			var bgc = getBackgroundColor($element);
-			
-			$(elem).css({
-						'cursor' : 'move',
-						'background-color' : bgc,
-						'display' : 'none'
-						
-					}).addClass('last-inserted');
-					
-			var children = $element.children(':not('+plugin.settings.exclude+')').get();
-			
-			if(children.length>0)
-				$(children[newPos]).after(elem);
-				
-			else {
-				$element.prepend(elem);
-				$(elem).show();
-			}
-			
-			
-			var $elem = $element.find(".last-inserted").removeClass('last-inserted');
-			
-			bindEvents($elem);
-			
-			if ($elem.prop('tagName') != 'IMG') { 
-			
-				if (!pos && children.length>0)
-						plugin.swipe(1);
-				
-				return children.length+1;
-			}
-			
-			// its an image - so we have to wait until its fully loaded
-			if ($elem.prop('complete') && elem.naturalWidth != 0) {
-				
-				if (!pos && children.length>0)
-					 plugin.swipe(1);
-				
-			}
-			else
-				$elem.load(function() {  
-		
-						if (!pos && children.length>0)
-							plugin.swipe(1);
-							
-			   });
-			   
-			return children.length+1;
-		}
-
-		/**
-			remove element at actual position // buggy on last pos
-			returns size of content elements
-		
-			@function
-			@description remove element at actual position
-		*/	
-		plugin.remove = function ()
-		{
-			var children  = $element.children().not(plugin.settings.exclude).get();
-			var childsLen = children.length;
-			
-			if (childsLen<1) return 0;
-			
-			var current 	= children[plugin.data.pos];
-			
-			plugin.data.pos--;
-			if (plugin.data.pos < 0)
-				plugin.data.pos = childsLen-1;
-			
-			var next 		= children[plugin.data.pos];
-
-			$(current).css( {position : 'absolute', top:0, left:0 })
-					  .animate({ opacity:0 }, plugin.settings.effectDuration, function() { $(current).remove(); });
-					  
-			$(next).css( { 'position' : 'static', 'display' : 'block' });
-			
-			if (plugin.data.pos > 0 && plugin.data.pos == childsLen-1)
-				plugin.data.pos--;			
-			
-			return childsLen-1;
-		}
-
-
-		/**
-			swipe to previous position // external call
-		
-			@function
-			@description swipe to previous position // external call
-		*/		
-		plugin.prev = function ()
-		{
-			plugin.swipe(-1);
-		}
-
-		/**
-			swipe to next position // external call
-		
-			@function
-			@description swipe to next position // external call
-		*/		
-		plugin.next = function ()
-		{
-			plugin.swipe(1);
 		}
 
 		/**
@@ -561,6 +487,110 @@ clean up messy code
 				})/*, speed+50)*/;
 			
 		}
+
+		/**
+			add a new element at [pos] or if [pos] not given - at actual position
+			returns size of content elements
+		
+			@function
+			@description add a new element at [pos] or if [pos] not given - at actual position
+			@param {dom element} the element to insert
+			@param {integer} position
+		*/	
+		plugin.add = function (elem, pos)
+		{
+			var newPos = pos ? pos : plugin.data.pos;
+			
+			var bgc = getBackgroundColor($element);
+			
+			$(elem).css({
+						'cursor' : 'move',
+						'background-color' : bgc,
+						'display' : 'none'
+						
+					}).addClass('last-inserted');
+					
+			var children = $element.children(':not('+plugin.settings.exclude+')').get();
+			
+			if(children.length>0)
+				$(children[newPos]).after(elem);
+				
+			else {
+				$element.prepend(elem);
+				$(elem).show();
+			}
+			
+			
+			var $elem = $element.find(".last-inserted").removeClass('last-inserted');
+			
+			bindEvents($elem);
+			
+			if ($elem.prop('tagName') != 'IMG') { 
+			
+				if (!pos && children.length>0)
+						plugin.swipe(1);
+				
+				return children.length+1;
+			}
+
+			// set image size to current size
+			$elem.css({
+				
+				'width'  : plugin.data.width,
+				'height' : plugin.data.height,
+				
+			})
+			
+			// its an image - so we have to wait until its fully loaded
+			if ($elem.prop('complete') && elem.naturalWidth != 0) {
+				
+				if (!pos && children.length>0)
+					 plugin.swipe(1);
+				
+			}
+			else
+				$elem.load(function() {  
+		
+						if (!pos && children.length>0)
+							plugin.swipe(1);
+							
+			   });
+			   
+			return children.length+1;
+		}
+
+		/**
+			remove element at actual position // buggy on last pos
+			returns size of content elements
+		
+			@function
+			@description remove element at actual position
+		*/	
+		plugin.remove = function ()
+		{
+			var children  = $element.children().not(plugin.settings.exclude).get();
+			var childsLen = children.length;
+			
+			if (childsLen<1) return 0;
+			
+			var current 	= children[plugin.data.pos];
+			
+			plugin.data.pos--;
+			if (plugin.data.pos < 0)
+				plugin.data.pos = childsLen-1;
+			
+			var next 		= children[plugin.data.pos];
+
+			$(current).css( {position : 'absolute', top:0, left:0 })
+					  .animate({ opacity:0 }, plugin.settings.effectDuration, function() { $(current).remove(); });
+					  
+			$(next).css( { 'position' : 'static', 'display' : 'block' });
+			
+			if (plugin.data.pos > 0 && plugin.data.pos == childsLen-1)
+				plugin.data.pos--;			
+			
+			return childsLen-1;
+		}
 	
 		/**
 			destroy plugin, final clean up and remove event handler
@@ -574,7 +604,7 @@ clean up messy code
 			if (plugin.data.eventHandler) window.removeEventListener('devicemotion deviceorientation', plugin.data.eventHandler, true);
 			
 			// unbind events on childrens
-			$elements.children().unbind('mousedown touchstart touchmove mouseup touchend');
+			$element.children().unbind('mousedown touchstart touchmove mouseup touchend').css('cursor', '');
 			
 		}
 		
