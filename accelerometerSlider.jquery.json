@@ -22,7 +22,7 @@
     ],
     "homepage": "http://www.medienservice-ladewig.de/AccelerometerSlider",
     "docs": "https://github.com/logioncms/accelerometerSlider",
-    "download": "https://github.com/logioncms/accelerometerSlider/releases/tag/0.9.3",
+    "download": "https://github.com/logioncms/accelerometerSlider/archive/master.zip",
     "dependencies": {
         "jquery": ">=1.4"
     }
