@@ -31,7 +31,7 @@ tested on different browsers (new and older)
 Supports hardware accelerated transitions : -moz-transition, -webkit-transition, -o-transition, transition
 ---
 toDO:
-slide image on touchemove, mousemove
+slide image on touchmove, mousemove
 implement thumbnail preview
 clean up messy code
 */
@@ -224,7 +224,7 @@ clean up messy code
 			
 			var lastPos = plugin.data.pos;
 			
-			// calculate position of next container to display
+			// calculate position of next element to display
 			plugin.data.pos += gamma > 0 ? 1 : -1;
 			
 			var direction = gamma > 0 ? -1 : 1;
@@ -241,7 +241,7 @@ clean up messy code
 			var height		= $(current).outerHeight();
 			var width		= $(current).outerWidth();
 			
-			// we have implement a "dom element loaded" event to set width and height correctly
+			// we have to implement a "dom element loaded" event to set width and height correctly
 			plugin.data.height		= $(next).outerHeight();
 			plugin.data.width		= $(next).outerWidth();
 			
@@ -320,7 +320,7 @@ clean up messy code
 						
 				case 'toss' : 	
 				
-							// calculate set properties for transition or animation
+							// calculate and set properties for transition or animation
 				
 							var top  = $element.offset().top-$(window).scrollTop();
 							var left = $element.offset().left-$(window).scrollLeft();
@@ -363,12 +363,12 @@ clean up messy code
 		
 			@function
 			@description start transition or javascript/jquery animation - depends on parameter accelerate
-			@param {dom element} The Element to finish and clean up
-			@param {dom element} The other Element to finish and clean up
+			@param {dom element} the element to animate
+			@param {dom element} the other element to animate (current slides to next)
 			@param {object} css properties
 			@param {boolean} true=use transition false=use javascript/jquery animation
 			@param {boolean} duration of transition / animation
-			@param {function} callback functions
+			@param {function} callback function
 		*/	
 		plugin.startSwipe = function(options) 
 		{
@@ -388,7 +388,7 @@ clean up messy code
 		
 			var accelerate = options.accelerate && ((options.props.current && options.props.current.transform) || (options.props.next && options.props.next.transform));
 			
-			// use harware accelarated transitions
+			// use hardware accelerated transitions
 			if (accelerate) {
 				
 				// delete properties already set in "transform"
@@ -404,7 +404,7 @@ clean up messy code
 				if (options.props.current && options.props.current.start) prepareTransition(options.current, options.props.current.start, options.duration);
 				if (options.props.next && options.props.next.start) prepareTransition(options.next, options.props.next.start, options.duration);
 				
-				// start Transition
+				// start transition
 				if (options.props.current) startTransition(options.current, currentProps, options.props.current.transform);
 				if (options.props.next) startTransition(options.next, nextProps, options.props.next.transform);
 	
@@ -431,10 +431,10 @@ clean up messy code
 		}
 	
 		/**
-			quick fix for responsive design
+			animation for responsive design (not really necessary)
 		
 			@function
-			@description quick fix for responsive design
+			@description for responsive design, runs transition/animation
 			@param {dom element} the element to work with
 			@width {integer} new width
 			@height {integer} new height
@@ -560,7 +560,7 @@ clean up messy code
 		}
 
 		/**
-			remove element at actual position // buggy on last pos
+			remove element at actual position
 			returns size of content elements
 		
 			@function
@@ -829,7 +829,7 @@ clean up messy code
 			children.each(function() {
 				
 					$(this)
-					// bind events for mousedown and touchstars. mouseddown only for desktop support. is not needed for mobile devices
+					// bind events for mousedown and touchstars. mousedown only for desktop support. is not needed for mobile devices
 					.bind('mousedown touchstart', function(e) {
 				
 						if (e.originalEvent.touches) {
@@ -900,7 +900,7 @@ clean up messy code
 						// gamma > options.resetGamma // device is in startposition?
 						if (gamma>=-plugin.settings.resetGamma && gamma <= plugin.settings.resetGamma) plugin.data.lastAction=0;
 						
-						// gamma > options.resetGamma and gamma > or < as options.minGamma // user has done something with his device
+						// gamma > options.resetGamma and gamma < as options.minGamma // user has done something with his device. otherwise
 						if (plugin.data.lastAction<=-plugin.settings.minGamma && gamma <=-plugin.settings.minGamma) return;
 						if (plugin.data.lastAction>=plugin.settings.minGamma && gamma >=plugin.settings.minGamma) return;
 						
@@ -972,10 +972,10 @@ clean up messy code
 		}
 		
 		/**
-			returns the actual background color of a given jquery element
+			returns the actual background color of a given jQuery element
 		
 			@function
-			@description returns the actual background color of a given element
+			@description returns the actual background color of a given jQuery element
 			@return {string} background color
 		*/		
 		var getBackgroundColor = function (elem) {
