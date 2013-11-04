@@ -125,7 +125,7 @@ $('#slider').data('accelerometerSlider').responsive ( dom element, width, height
 ---------------
 Version History
 ---------------
-<b>0.9.6</b> added public method (position, current), tweaks
+<b>0.9.6</b> added public methods (position, current), tweaks
 
 <b>0.9.5</b> added public method (remove), tweaks, minor bugfixes
 
