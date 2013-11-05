@@ -1,5 +1,5 @@
 /*
-jquery.accelerometerSlider plugin v0.9.6
+jquery.accelerometerSlider plugin v0.9.7
 ---
 http://github.com/logioncms/accelerometerSlider
 http://www.medienservice-ladewig.de/AccelerometerSlider
@@ -46,6 +46,7 @@ clean up messy code
         var defaults = {
 
 				on				: 'orientation',
+				orientation		: 'west',
 				minGamma		: 25,
 				resetGamma		: 15,
 				sensibility		: 4,
@@ -890,23 +891,23 @@ clean up messy code
 			
 				window.addEventListener('deviceorientation', plugin.data.eventHandler = function(event) {
 					
-						var gamma = event.gamma;
+						var movement = plugin.settings.orientation == 'west' ? event.gamma : event.beta;
 						
 						var time = Date.now();
 						
 						// certain time elapsed since last swipe?
 						if (time-plugin.data.lastTime<plugin.settings.minTime) return false;
 						
-						// gamma > options.resetGamma // device is in startposition?
-						if (gamma>=-plugin.settings.resetGamma && gamma <= plugin.settings.resetGamma) plugin.data.lastAction=0;
+						// movement > options.resetGamma // device is in startposition?
+						if (movement>=-plugin.settings.resetGamma && movement <= plugin.settings.resetGamma) plugin.data.lastAction=0;
 						
 						// gamma > options.resetGamma and gamma < as options.minGamma // user has done something with his device. otherwise
-						if (plugin.data.lastAction<=-plugin.settings.minGamma && gamma <=-plugin.settings.minGamma) return;
-						if (plugin.data.lastAction>=plugin.settings.minGamma && gamma >=plugin.settings.minGamma) return;
+						if (plugin.data.lastAction<=-plugin.settings.minGamma && movement <=-plugin.settings.minGamma) return;
+						if (plugin.data.lastAction>=plugin.settings.minGamma && movement >=plugin.settings.minGamma) return;
 						
-						if (gamma>=plugin.settings.minGamma || gamma<=-plugin.settings.minGamma) {
+						if (movement>=plugin.settings.minGamma || movement<=-plugin.settings.minGamma) {
 							
-							plugin.swipe(gamma, time);
+							plugin.swipe(movement, time);
 							
 						}
 		
