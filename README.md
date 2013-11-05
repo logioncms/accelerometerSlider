@@ -1,4 +1,4 @@
-AccelerometerSlider Version 0.9.6
+AccelerometerSlider Version 0.9.7
 =================================
 
 A JQuery lightweight (3k zipped) Image / Content Slider with enabled accelerometer functionality and device orientation / device motion detection on accelerometer-equipped devices.
@@ -70,6 +70,8 @@ Simple Demonstration files are included in download file
 Options
 -------
 on	: 'orientation', 'motion' or 'none', // default = orientation
+
+orientation	: 'west' or 'north' // default = west. turn your smartphone left/right (west) or up/down (north)
 
 minGamma : 25 // min. movement of device (on device orientation) before slide starts
 
