@@ -9,7 +9,7 @@ Best used on touch devices - but works on desktop computers too.
 
 Works in your existing responsive environment out of the box. You don't need to implement additional css - except of your own.
 
-<a href="http://www.medienservice-ladewig.de/AccelerometerSlider">Plugin Homepage</a>
+<a href="http://www.medienservice-ladewig.de/AccelerometerSlider">jQuery Plugin Homepage</a>
 
 -------------------------
 Additional functionality:
@@ -57,8 +57,8 @@ devicemotion and deviceorientation will only work on accelerometer equipped devi
 
 <a href="http://www.medienservice-ladewig.de/demo/demo1.htm">demo #1</a> | 
 <a href="http://www.medienservice-ladewig.de/demo/demo2.htm">demo #2</a> | 
-<a href="http://www.medienservice-ladewig.de/demo/demo3.htm">responsive demo #3</a> | 
-<a href="http://www.medienservice-ladewig.de/demo/demo4.htm">responsive demo #4</a> |
+<a href="http://www.medienservice-ladewig.de/demo/demo3.htm">demo #3 for responsive webdesign</a> | 
+<a href="http://www.medienservice-ladewig.de/demo/demo4.htm">demo #4 for responsive webdesign</a> |
 <a href="http://www.medienservice-ladewig.de/demo/demo5.htm">instance methods #5</a>
 
 <a href="http://www.medienservice-ladewig.de/AccelerometerSlider">Plugin Homepage</a>
@@ -125,6 +125,8 @@ $('#slider').data('accelerometerSlider').responsive ( dom element, width, height
 ---------------
 Version History
 ---------------
+<b>0.9.7</b> added possibility to turn smartphone north and south. not just west and east
+
 <b>0.9.6</b> added public methods (position, current), tweaks
 
 <b>0.9.5</b> added public method (remove), tweaks, minor bugfixes
